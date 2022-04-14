@@ -3,9 +3,7 @@ import pickle
 
 #load clf model
 clas=pickle.load(open('clf.plk', 'rb'))
-
-#Use a Preprocessor to input lat, lon
-
+clf1= pickle.load(open('sentiment_mnb_vec.pickle', 'rb'))
 
 
 
@@ -21,9 +19,11 @@ def index():
 @app.route("/predict", methods=["POST"])
 def predict():
     text= request.form["tweet_text"]
-    latitude= request.form["cyberbullying_type"]
-    X_test_pkl=[[tweet_text, cyberbullying_type]]
-    severity=clas.predict(X_test_pkl)
-    return render_template("result.html", lng= longitude, lat=latitude, sev= severity)
+    cyberbullying= request.form["cyberbullying_type"]
+    sentiment = request.form["cyberbullying_type"]
+    X_test_pkl=request.form["sentiment"]
+    cyberbullying=clas.predict(X_test_pkl)
+    sentiment= clf1.predict_proba(X_test_pkl)
+    return render_template("result.html", text= text, cyberbullying=cyberbullying, sentiment= sentiment)
 
 app.run(debug=True)
