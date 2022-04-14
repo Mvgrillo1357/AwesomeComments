@@ -40,10 +40,11 @@
         <p>AwesomeComments - Please input a tweet text and recieve moderation and sentiment</p>
     </header>
 
-    <form action="/", method="POST", enctype="multipart/form-data">
-        <input type="file", name="text", accept="text/*">
+    <form action="/predict", method="POST", enctype="multipart/form-data">
+        <!-- <input type="file", name="text", accept="text/*"> -->
+        <input type="text" id="tweet_text" name="tweet_text" placeholder="Enter some text to test">
         <input type="submit", name="action", value="Submit">
-        <input type="submit", name="action", value="Inference Data">
+        <!-- <input type="submit", name="action", value="Inference Data"> -->
     </form>
     {% block result %}
     {% endblock %}

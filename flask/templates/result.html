@@ -54,6 +54,15 @@ div section{
  
     </div>
     <h1>Sentiment</h1>
-        <section id="Positive">{{ dispResult(result,"Positive") }}</section>
-        <section id="Negative">{{ dispResult(result,"Negative") }}</section>
+        <!-- <section id="Positive">{{ dispResult(result,"Positive") }}</section>
+        <section id="Negative">{{ dispResult(result,"Negative") }}</section> -->
+        <div id="sentiment">
+            <section>
+                {% if sentiment == 1 %}
+                    Positive
+                {% else %}
+                    Negative
+                {% endif %}
+            </section>
+        </div>
 {% endblock %}
