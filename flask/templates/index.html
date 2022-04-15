@@ -1,52 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <style>
-        html, body {
-            margin: 0;
-            height: 100%;
-            font-family: Arial, Helvetica, sans-serif;
-            font-weight: bold;
-            text-align: center;
-        }
-        img {
-            width: 30%;
-            height: auto;
-        }
-    
-        body {
-            display: flex;
-            flex-direction: column;
-        }
-    
-        header {
-            height: 100px;
-            background-color: #336699;
-        }
-        form {
-            background-color: #336699;
-        }
-    </style>
-    {% block style %}
-    {% endblock %}
-    <title>Document</title>
+    <title>AwesomeComments</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="static/assets/css/main.css" />
 </head>
-<body>
-    <header>
-        <h1>Welcome</h1>
-        <p>AwesomeComments - Please input a tweet text and recieve moderation and sentiment</p>
+
+<body class="is-preload">
+
+    <header id="header">
+        <h1>AwesomeComments</h1>
+        <p>Enter your text and we will predict the sentiment and if cyberbullying is present</p>
     </header>
 
-    <form action="/predict", method="POST", enctype="multipart/form-data">
-        <!-- <input type="file", name="text", accept="text/*"> -->
-        <input type="text" id="tweet_text" name="tweet_text" placeholder="Enter some text to test">
-        <input type="submit", name="action", value="Submit">
-        <!-- <input type="submit", name="action", value="Inference Data"> -->
+    <form id="text-form" method="post" action="/result">
+        <input type="text" id="tweet_text" name="tweet_text" required placeholder="Enter your text">
+        <input type="submit" value="Submit" />
     </form>
-    {% block result %}
-    {% endblock %}
+
+    <div id="result">
+        {% block result %}
+        {% endblock %}
+    </div>
+
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="https://github.com/Mvgrillo1357/AwesomeComments" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <div id="footer-nittany">
+            <a href="https://www.psu.edu/"><img src="static/images/psu.png" /></a>
+        </div>
+    </footer>
+
+    <script src="static/assets/js/main.js"></script>
+
 </body>
+
 </html>

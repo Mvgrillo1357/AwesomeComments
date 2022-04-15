@@ -1,68 +1,28 @@
 {% extends "index.html" %}
 
-{% block style %}
-<style>
-div{
-    border-color: black;
-    border-width: 7px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 500px;
-    padding: 5px;
-    border: 1px solid black;
-}
-#fresh{
-    background-color: #55bb66;
-}
-#trash{
-    background-color: grey;
-}
-div section{
-    border-radius: 5px;
-    height: 200px;
-    display: inline-block;
-    width: 30%;
-    background: #88add0;
-    margin: 5px 5px;
-}
-</style>
-{% endblock %}
-
 {% block result %}
-    {% macro dispResult(result, id) %}
-        {% if result == id%}
-            <p>{{ id }}:</p>
-            <txt src={{txt_b64}}>
-        {% else %}
-            <p>{{ id }}:</p>
-        {% endif %}
-    {% endmacro %}
-            
-    <h1>Cyberbullying Type</h1>
-    <div id="Bad">
-        <section id="religion">{{ dispResult(result,"Religious") }}</section>
-        <section id="age">{{ dispResult(result,"Ageism") }}</section>
-        <section id="gender">{{ dispResult(result,"Sexist") }}</section>
-        <section id="ethnicity">{{ dispResult(result,"Racist") }}</section>
-        <section id="other_cyberbullying">{{ dispResult(result,"Another Type of Cyberbullying") }}</section>
+
+<section>
+    <div id="result-label">
+        Results for "<b>{{text}}</b>"
     </div>
-    <h1>Not Cyberbullying</h1>
-    <div id="Good">
-        <section id="not_cyberbullying">{{ dispResult(result,"Not Cyberbullying") }}</section>
- 
-    </div>
-    <h1>Sentiment</h1>
-        <!-- <section id="Positive">{{ dispResult(result,"Positive") }}</section>
-        <section id="Negative">{{ dispResult(result,"Negative") }}</section> -->
+
+    <div class="result-tile">
+        <h2>Sentiment</h2>
         <div id="sentiment">
-            <section>
-                {% if sentiment == 1 %}
-                    Positive
-                {% else %}
-                    Negative
-                {% endif %}
-            </section>
+            <span class="sentiment-{{sentiment['value']}}">{{sentiment["label"]}}</span>
+            <span id="sentiment-probability">&nbsp;({{sentiment["probability"]}}% probability)</span>
         </div>
+    </div>
+
+    <div class="result-tile">
+        <h2>Cyberbullying</h2>
+        <div id="cyberbullying">
+            <span class="cyberbullying-{{cyberbullying['value']}}">Not present</span>
+            <span id="cyberbullying-probability">&nbsp;({{cyberbullying["probability"]}}% probability)</span>
+        </div>
+    </div>
+
+</section>
+
 {% endblock %}
