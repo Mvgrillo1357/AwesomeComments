@@ -1,41 +1,22 @@
-import tensorflow as tf
+import pickle
 
-class Model:
-    def __init__(self, filepath, resize, save_type):
-        #self.fold_name = filepath
-        #self.resize = resize
-        self.model_dir = "./models/" + self.fold_name
-        # Loading the saved model from directory
-        if (save_type == 'pickle'):
-            self.model = tf.saved_model.load(self.model_dir)
-        elif (save_type == 'h5'):
-            self.model = tf.keras.models.load_model(self.model_dir)
-        
+sentiment_labels = {
+    0: "Negative",
+    1: "Positive",
+    4: "Positive"
+}
 
-    # Preprocess and run text through model, returns a map to results
-    def process_txt(self, txt):
-            
-            # ADJUST SIZE PARAMETERS BASED ON MODEL
-            
-            # Normalize data
-            
-            
-            # Putting image into model
-            result = self.model(txt)
-        
-            # Convert result to a numpy array
-            return result[0].numpy()
-    
-# Converts numpy_array results into mapped data with labels
-def map_result(np_arr):
+class SentimentModel:
+    def __init__(self, model_name):
+        self.vectorizer = pickle.load(open(f'..\\models\\vectorizer_{model_name}.pickle', 'rb'))
+        self.model = pickle.load(open(f'..\\models\\sentiment_{model_name}.pickle', 'rb'))
 
-    # 6 values which represent what fruits our model classifies
-    cyberbullying = ['religion', 'age', 'gender', 'ethnicity', 'not_cyberbullying', 'other_cyberbullying']
-    sentiment = ['positive', 'negative']
-    
-    mapping = {}
-
-    for (key, value) in zip(cyberbullying, np_arr):
-        mapping[key] = value.item()
-
-    return mapping
+    def get_sentiment(self, text):
+        text_vectorized = self.vectorizer.transform([text])
+        prediction = self.model.predict(text_vectorized)[0]
+        probabilities = self.model.predict_proba(text_vectorized)[0]
+        return {
+            "value": prediction,
+            "label": sentiment_labels[prediction],
+            "probability": round(probabilities.max() * 100, 2)
+        }
