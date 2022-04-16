@@ -1,3 +1,4 @@
+'''
 import tensorflow as tf
 
 class Model:
@@ -39,3 +40,4 @@ def map_result(np_arr):
         mapping[key] = value.item()
 
     return mapping
+'''
