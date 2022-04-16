@@ -1197,7 +1197,8 @@ button:disabled,
 }
 
 /* Sentiment */
-#sentiment .sentiment-1 {
+#sentiment .sentiment-1,
+#sentiment .sentiment-4 {
   font-weight: bold;
   color: #199e83
 }
