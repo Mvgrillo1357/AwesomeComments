@@ -1,0 +1,41 @@
+Index: flask/app.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import Flask, request, render_template\r\nimport pickle\r\n\r\napp = Flask(__name__)\r\n\r\n# load vectorizers\r\nvectorizer_saa6124 = pickle.load(open('..\\\\models\\\\vectorizer_saa6124.pickle', 'rb'))\r\n\r\n# load models\r\n#clas=pickle.load(open('clf.plk', 'rb'))\r\nsentiment_model_saa6124 = pickle.load(open('..\\\\models\\\\sentiment_saa6124.pickle', 'rb'))\r\n\r\ndef get_sentiment(text):\r\n    text_vec_saa6124 = vectorizer_saa6124.transform([text])\r\n    prediction_prob_saa6124 = sentiment_model_saa6124.predict_proba(text_vec_saa6124)\r\n    prob_neg_saa6124 = prediction_prob_saa6124[0][0]\r\n    prob_pos_saa6124 = prediction_prob_saa6124[0][1]\r\n    # TODO: get predict_proba for other 2 sentiment models and replace below\r\n    prob_neg_avg = (prob_neg_saa6124 + prob_neg_saa6124 + prob_neg_saa6124) / 3\r\n    prob_pos_avg = (prob_pos_saa6124 + prob_pos_saa6124 + prob_pos_saa6124) / 3\r\n    if (prob_pos_avg > prob_neg_avg):\r\n        sentiment = {\r\n            \"value\": 1,\r\n            \"label\": \"Positive\",\r\n            \"probability\": round(prob_pos_avg * 100, 2)\r\n        }\r\n    else:\r\n        sentiment = {\r\n            \"value\": 0,\r\n            \"label\": \"Negative\",\r\n            \"probability\": round(prob_neg_avg * 100, 2)\r\n        }\r\n    return sentiment\r\n\r\ndef get_cyberbullying(text):\r\n    # TODO\r\n    cyberbullying = {\r\n        \"value\": 0,\r\n        \"label\": \"Not present\",\r\n        \"type\": \"N/A\",\r\n        \"probability\": 100.00\r\n    }\r\n    return cyberbullying\r\n\r\n@app.route(\"/\", methods=[\"GET\"])\r\ndef index():\r\n    return render_template(\"index.html\")\r\n\r\n@app.route(\"/result\", methods=[\"POST\"])\r\ndef result():\r\n    text = request.form[\"tweet_text\"]\r\n    sentiment = get_sentiment(text)\r\n    cyberbullying = get_cyberbullying(text)\r\n    return render_template(\"result.html\", text=text, sentiment=sentiment, cyberbullying=cyberbullying)\r\n\r\napp.run(debug=True)
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/flask/app.py b/flask/app.py
+--- a/flask/app.py	(revision 05912707307aa1e98aead8ce3039fb7dd5cf7bcf)
++++ b/flask/app.py	(date 1650153048856)
+@@ -5,19 +5,28 @@
+ 
+ # load vectorizers
+ vectorizer_saa6124 = pickle.load(open('..\\models\\vectorizer_saa6124.pickle', 'rb'))
++vectorizer_aav5195 = pickle.load(open('..\\models\\vectorizer_aav5195.pickle', 'rb'))
+ 
+ # load models
+ #clas=pickle.load(open('clf.plk', 'rb'))
+ sentiment_model_saa6124 = pickle.load(open('..\\models\\sentiment_saa6124.pickle', 'rb'))
++sentiment_model_aav5195 = pickle.load(open('..\\models\\sentiment_aav5195.pickle', 'rb'))
+ 
+ def get_sentiment(text):
+     text_vec_saa6124 = vectorizer_saa6124.transform([text])
++    text_vec_aav5195 = vectorizer_aav5195.transform([text])
++
+     prediction_prob_saa6124 = sentiment_model_saa6124.predict_proba(text_vec_saa6124)
++    prediction_prob_aav5195 = sentiment_model_aav5195.predict_proba(text_vec_aav5195)
++
+     prob_neg_saa6124 = prediction_prob_saa6124[0][0]
+     prob_pos_saa6124 = prediction_prob_saa6124[0][1]
++    prob_neg_aav5195 = prediction_prob_aav5195[0][0]
++    prob_pos_aav5195 = prediction_prob_aav5195[0][1]
++
+     # TODO: get predict_proba for other 2 sentiment models and replace below
+-    prob_neg_avg = (prob_neg_saa6124 + prob_neg_saa6124 + prob_neg_saa6124) / 3
+-    prob_pos_avg = (prob_pos_saa6124 + prob_pos_saa6124 + prob_pos_saa6124) / 3
++    prob_neg_avg = (prob_neg_saa6124 + prob_neg_aav5195 + prob_neg_saa6124) / 3
++    prob_pos_avg = (prob_pos_saa6124 + prob_pos_aav5195 + prob_pos_saa6124) / 3
+     if (prob_pos_avg > prob_neg_avg):
+         sentiment = {
+             "value": 1,
