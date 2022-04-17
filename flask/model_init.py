@@ -1,14 +1,7 @@
 import pickle
-
 from keras.preprocessing.text import Tokenizer
 from tensorflow import keras
 from keras.preprocessing.sequence import pad_sequences
-
-# SENTIMENT
-POSITIVE = "POSITIVE"
-NEGATIVE = "NEGATIVE"
-NEUTRAL = "NEUTRAL"
-SENTIMENT_THRESHOLDS = (0.4, 0.7)
 
 sentiment_labels = {
     0: "Negative",
@@ -29,27 +22,19 @@ class SequentialModel:
     def __init__(self, model_name):
         self.model = keras.models.load_model('..\\sentiment_aav5195')
 
-    def decode_sentiment(score):
-        if score <= SENTIMENT_THRESHOLDS[0]:
-            label = NEGATIVE
-        elif score >= SENTIMENT_THRESHOLDS[1]:
-            label = POSITIVE
-        else:
-            label = NEUTRAL
-        return label
-
     def get_sequential_sentiment(self, text):
         tokenizer = Tokenizer()
         # Tokenize text
         x_test = pad_sequences(tokenizer.texts_to_sequences([text]), maxlen=300)
         prediction = self.model.predict([x_test])[0]
-        label = self.model.decode_sentiment(prediction)
 
+        # for testing only
         return {
             "value": prediction,
-            "label": label,
+            "label": sentiment_labels[0],
             "probability": round(prediction.max() * 100, 2)
         }
+        # return prediction
 
 class SentimentModel:
     def __init__(self, model_name):
