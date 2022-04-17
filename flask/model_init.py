@@ -26,7 +26,8 @@ cyberbully_labels = {
 
 class SequentialModel:
     def __init__(self, model_name):
-        self.model = keras.models.load_model('..\\sentiment_aav5195')
+        self.model = keras.models.load_model('..\\models\\sentiment_aav5195.h5')
+        #self.model = keras.models.load_model('..\\sentiment_aav5195')
 
     def get_sequential_sentiment(self, text):
         tokenizer = Tokenizer()
