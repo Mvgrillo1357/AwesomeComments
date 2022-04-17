@@ -9,6 +9,12 @@ sentiment_labels = {
     4: "Positive"
 }
 
+# SENTIMENT
+POSITIVE = "POSITIVE"
+NEGATIVE = "NEGATIVE"
+NEUTRAL = "NEUTRAL"
+SENTIMENT_THRESHOLDS = (0.4, 0.7)
+
 cyberbully_labels = {
     "age" : "Ageism",
     "ethnicity" : "Racism",
