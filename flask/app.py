@@ -1,19 +1,25 @@
 from flask import Flask, request, render_template
+from model_init import SequentialModel
 from model_init import SentimentModel
 from model_init import CyberBullyModel
 
 app = Flask(__name__)
 
 saa6124 = SentimentModel('saa6124')
-mvg5906= CyberBullyModel('mvg5906')
+mvg5906 = CyberBullyModel('mvg5906')
+aav5195 = SequentialModel('aav5195')
+
+
 
 def get_sentiment(text):
     sentiment_saa6124 = saa6124.get_sentiment(text)
+    sentiment_aav5195 = aav5195.get_sequential_sentiment(text)
 
     #TODO: get other 2 sentiment model output & average results
     sentiment = sentiment_saa6124
-
-    return sentiment
+    sentimentSequential = sentiment_aav5195
+    return sentimentSequential
+    #return sentiment
 
 
 def get_cyberbullying(text):

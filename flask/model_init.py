@@ -1,4 +1,7 @@
 import pickle
+import numpy as np
+from tensorflow import keras
+
 
 sentiment_labels = {
     0: "Negative",
@@ -15,6 +18,20 @@ cyberbully_labels = {
     "religion" : "Anti Religious"
 }
 
+class SequentialModel:
+    def __init__(self, model_name):
+        self.model = keras.models.load_model('..\\sentiment_aav5195')
+
+
+    def get_sequential_sentiment(self, text):
+        prediction = self.model.predict(np.array(text))
+        probabilities = self.model.predict_proba(np.array(text))
+        return {
+            "value": prediction,
+            "label": sentiment_labels[prediction],
+            "probability": round(probabilities.max() * 100, 2)
+        }
+
 class SentimentModel:
     def __init__(self, model_name):
         self.vectorizer = pickle.load(open(f'..\\models\\vectorizer_{model_name}.pickle', 'rb'))
@@ -29,6 +46,7 @@ class SentimentModel:
             "label": sentiment_labels[prediction],
             "probability": round(probabilities.max() * 100, 2)
         }
+
 
 
 class CyberBullyModel:
