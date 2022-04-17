@@ -1,10 +1,11 @@
 from flask import Flask, request, render_template
 from model_init import SentimentModel
+from model_init import CyberBullyModel
 
 app = Flask(__name__)
 
 saa6124 = SentimentModel('saa6124')
-
+mvg5906= CyberBullyModel('mvg5906')
 
 def get_sentiment(text):
     #TODO: get other 2 sentiment model output & average results
@@ -14,12 +15,7 @@ def get_sentiment(text):
 
 def get_cyberbullying(text):
     # TODO
-    cyberbullying = {
-        "value": 0,
-        "label": "Not present",
-        "type": "N/A",
-        "probability": 100.00
-    }
+    cyberbullying = mvg5906.get_ctype(text)
     return cyberbullying
 
 
