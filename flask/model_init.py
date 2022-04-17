@@ -18,7 +18,7 @@ SENTIMENT_THRESHOLDS = (0.4, 0.7)
 cyberbully_labels = {
     "age" : "Ageism",
     "ethnicity" : "Racism",
-    "gender" : "Ageism",
+    "gender" : "Sexism",
     "not_cyberbullying" : "Not Cyberbullying",
     "other_cyberbullying" : "Another Type of Cyberbullying",
     "religion" : "Anti Religious"
