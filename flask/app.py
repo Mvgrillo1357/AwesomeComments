@@ -8,8 +8,11 @@ saa6124 = SentimentModel('saa6124')
 mvg5906= CyberBullyModel('mvg5906')
 
 def get_sentiment(text):
+    sentiment_saa6124 = saa6124.get_sentiment(text)
+
     #TODO: get other 2 sentiment model output & average results
-    sentiment = saa6124.get_sentiment(text)
+    sentiment = sentiment_saa6124
+
     return sentiment
 
 
