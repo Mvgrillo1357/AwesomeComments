@@ -43,5 +43,5 @@ class CyberBullyModel:
         return {
             "value": prediction,
             "label": cyberbully_labels[prediction],
-            "probability": (probabilities *100)
+            "probability": round(probabilities.max() *100, 2)
         }

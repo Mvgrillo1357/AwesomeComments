@@ -1211,13 +1211,17 @@ button:disabled,
 }
 
 /* Cyberbullying */
-#cyberbullying .cyberbullying-0 {
-  font-weight: bold;
-  color: #199e83
-}
-#cyberbullying .cyberbullying-1 {
+#cyberbullying .cyberbullying-age,
+#cyberbullying .cyberbullying-ethnicity,
+#cyberbullying .cyberbullying-gender,
+#cyberbullying .cyberbullying-other_cyberbullying,
+#cyberbullying .cyberbullying-religion {
   font-weight: bold;
   color: #ca5237
+}
+#cyberbullying .cyberbullying-not_cyberbullying {
+  font-weight: bold;
+  color: #199e83
 }
 #cyberbullying #cyberbullying-probability {
   font-size: 0.8em
