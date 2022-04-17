@@ -7,12 +7,12 @@ sentiment_labels = {
 }
 
 cyberbully_labels = {
-    "age",
-    "ethnicity",
-    "gender",
-    "not_cyberbullying",
-    "other_cyberbullying",
-    "religion"
+    "age" : "Ageism",
+    "ethnicity" : "Racism",
+    "gender" : "Ageism",
+    "not_cyberbullying" : "Not Cyberbullying",
+    "other_cyberbullying" : "Another Type of Cyberbullying",
+    "religion" : "Anti Religious"
 }
 
 class SentimentModel:
@@ -42,6 +42,6 @@ class CyberBullyModel:
         probabilities = self.model.predict_proba(text_vectorized)[0]
         return {
             "value": prediction,
-            "label": cyberbully_labels,
-            "probability": probabilities *100
+            "label": cyberbully_labels[prediction],
+            "probability": (probabilities *100)
         }
