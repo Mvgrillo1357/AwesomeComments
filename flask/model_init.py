@@ -1,10 +1,19 @@
 import pickle
+from keras.preprocessing.text import Tokenizer
+from tensorflow import keras
+from keras.preprocessing.sequence import pad_sequences
 
 sentiment_labels = {
     0: "Negative",
     1: "Positive",
     4: "Positive"
 }
+
+# SENTIMENT
+POSITIVE = "POSITIVE"
+NEGATIVE = "NEGATIVE"
+NEUTRAL = "NEUTRAL"
+SENTIMENT_THRESHOLDS = (0.4, 0.7)
 
 cyberbully_labels = {
     "age" : "Ageism",
@@ -14,6 +23,24 @@ cyberbully_labels = {
     "other_cyberbullying" : "Another Type of Cyberbullying",
     "religion" : "Anti Religious"
 }
+
+class SequentialModel:
+    def __init__(self, model_name):
+        self.model = keras.models.load_model('..\\sentiment_aav5195')
+
+    def get_sequential_sentiment(self, text):
+        tokenizer = Tokenizer()
+        # Tokenize text
+        x_test = pad_sequences(tokenizer.texts_to_sequences([text]), maxlen=300)
+        prediction = self.model.predict([x_test])[0]
+
+        # for testing only
+        return {
+            "value": prediction,
+            "label": sentiment_labels[0],
+            "probability": round(prediction.max() * 100, 2)
+        }
+        # return prediction
 
 class SentimentModel:
     def __init__(self, model_name):
@@ -29,6 +56,7 @@ class SentimentModel:
             "label": sentiment_labels[prediction],
             "probability": round(probabilities.max() * 100, 2)
         }
+
 
 
 class CyberBullyModel:
