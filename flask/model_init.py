@@ -42,6 +42,6 @@ class CyberBullyModel:
         probabilities = self.model.predict_proba(text_vectorized)[0]
         return {
             "value": prediction,
-            "label": sentiment_labels[prediction],
-            "probability": str(probabilities)
+            "label": cyberbully_labels,
+            "probability": probabilities *100
         }
