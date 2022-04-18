@@ -1,3 +1,4 @@
+import os
 import pickle
 from keras.preprocessing.text import Tokenizer
 from tensorflow import keras
@@ -26,7 +27,7 @@ cyberbully_labels = {
 
 class SequentialModel:
     def __init__(self, model_name):
-        self.model = keras.models.load_model('..\\models\\sentiment_aav5195.h5')
+        self.model = keras.models.load_model(os.path.join(os.path.dirname(__file__), 'models', 'sentiment_aav5195.h5'))
         #self.model = keras.models.load_model('..\\sentiment_aav5195')
 
     def get_sequential_sentiment(self, text):
@@ -43,10 +44,13 @@ class SequentialModel:
         }
         # return prediction
 
+
 class SentimentModel:
     def __init__(self, model_name):
-        self.vectorizer = pickle.load(open(f'..\\models\\vectorizer_{model_name}.pickle', 'rb'))
-        self.model = pickle.load(open(f'..\\models\\sentiment_{model_name}.pickle', 'rb'))
+        vec_file = os.path.join(os.path.dirname(__file__), 'models', f'vectorizer_{model_name}.pickle')
+        self.vectorizer = pickle.load(open(vec_file, 'rb'))
+        model_file = os.path.join(os.path.dirname(__file__), 'models', f'sentiment_{model_name}.pickle')
+        self.model = pickle.load(open(model_file, 'rb'))
 
     def get_sentiment(self, text):
         text_vectorized = self.vectorizer.transform([text])
@@ -59,11 +63,12 @@ class SentimentModel:
         }
 
 
-
 class CyberBullyModel:
     def __init__(self, model_name):
-        self.vectorizer = pickle.load(open(f'..\\models\\cyberbullyvectorizer_{model_name}.pickle', 'rb'))
-        self.model = pickle.load(open(f'..\\models\\cyberbullysentiment_{model_name}.pickle', 'rb'))
+        vec_file = os.path.join(os.path.dirname(__file__), 'models', f'cyberbullyvectorizer_{model_name}.pickle')
+        self.vectorizer = pickle.load(open(vec_file, 'rb'))
+        model_file = os.path.join(os.path.dirname(__file__), 'models', f'cyberbullysentiment_{model_name}.pickle')
+        self.model = pickle.load(open(model_file, 'rb'))
 
     def get_ctype(self, text):
         text_vectorized = self.vectorizer.transform([text])
