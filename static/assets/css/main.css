@@ -1210,16 +1210,16 @@ button:disabled,
   font-size: 0.8em
 }
 
-/* Cyberbullying */
-#cyberbullying .cyberbullying-age,
-#cyberbullying .cyberbullying-ethnicity,
-#cyberbullying .cyberbullying-gender,
-#cyberbullying .cyberbullying-other_cyberbullying,
-#cyberbullying .cyberbullying-religion {
+/* Cyberbullying age, ethnicity, gender, other_cyberbullying, religion .....not_cyberbullying */
+#cyberbullying .cyberbullying-0,
+#cyberbullying .cyberbullying-1,
+#cyberbullying .cyberbullying-2,
+#cyberbullying .cyberbullying-4,
+#cyberbullying .cyberbullying-5 {
   font-weight: bold;
   color: #ca5237
 }
-#cyberbullying .cyberbullying-not_cyberbullying {
+#cyberbullying .cyberbullying-3 {
   font-weight: bold;
   color: #199e83
 }
