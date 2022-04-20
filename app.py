@@ -8,12 +8,12 @@ saa6124 = Model('sentiment_saa6124.pickle',
                 'vectorizer_saa6124.pickle')
 cpb5703 = Model('sentiment_cpb5703.pickle',
                 'vectorizer_cpb5703.pickle')
-                
+
 #mvg5906 = Model('cyberbullysentiment_mvg5906.pickle','cyberbullyvectorizer_mvg5906.pickle')
 
 mvg5906_sgd = Model('cyberbullysentiment_sgdmvg5906.pickle',
                     'cyberbullyvectorizer_sgdmvg5906.pickle')
-mvg5906_dtree = Model('cyberbullysentiment_dtreemvg5906.pickle','cyberbullyvectorizer_dtreemvg5906')
+mvg5906_dtree = Model('cyberbullysentiment_dtreemvg5906.pickle','cyberbullyvectorizer_dtreemvg5906.pickle')
 
 mvg5906_mlpclass = Model('cyberbullysentiment_mlpclassmvg5906.pickle', 'cyberbullyvectorizer_mlpclassmvg5906.pickle')
 
