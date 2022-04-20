@@ -9,10 +9,15 @@ saa6124 = Model('sentiment_saa6124.pickle',
                 'vectorizer_saa6124.pickle')
 cpb5703 = Model('sentiment_cpb5703.pickle',
                 'vectorizer_cpb5703.pickle')
-mvg5906 = Model('cyberbullysentiment_mvg5906.pickle',
-                'cyberbullyvectorizer_mvg5906.pickle')
+
+#mvg5906 = Model('cyberbullysentiment_mvg5906.pickle','cyberbullyvectorizer_mvg5906.pickle')
+
 mvg5906_sgd = Model('cyberbullysentiment_sgdmvg5906.pickle',
                     'cyberbullyvectorizer_sgdmvg5906.pickle')
+mvg5906_dtree = Model('cyberbullysentiment_dtreemvg5906.pickle','cyberbullyvectorizer_dtreemvg5906.pickle')
+
+mvg5906_mlpclass = Model('cyberbullysentiment_mlpclassmvg5906.pickle', 'cyberbullyvectorizer_mlpclassmvg5906.pickle')
+
 #aav5195 = SequentialModel('aav5195')
 
 
@@ -23,7 +28,7 @@ def get_sentiment_prediction(text):
 
 
 def get_cyberbullying_prediction(text):
-    prediction = get_ensemble_prediction([mvg5906, mvg5906_sgd], text)
+    prediction = get_ensemble_prediction([mvg5906_sgd, mvg5906_dtree, mvg5906_mlpclass], text)
     prediction["label"] = cyberbullying_labels[prediction["class"]]
     return prediction
 
