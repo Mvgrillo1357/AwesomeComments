@@ -27,25 +27,22 @@ cyberbully_labels = {
 
 class SequentialModel:
     def __init__(self, model_name):
-        self.model = keras.models.load_model(os.path.join(os.path.dirname(__file__), 'models', 'sentiment_aav5195.h5'))
-        #self.model = keras.models.load_model('..\\sentiment_aav5195')
+        self.model = keras.models.load_model(os.path.join(os.path.dirname(__file__), 'models', f'sentiment_{model_name}.h5'))
 
     def get_sequential_sentiment(self, text):
         tokenizer = Tokenizer()
         # Tokenize text
         x_test = pad_sequences(tokenizer.texts_to_sequences([text]), maxlen=300)
-        prediction = self.model.predict([x_test])[0]
 
-        # for testing only
+        prediction = self.model.predict([x_test])[0]
         return {
             "value": prediction,
             "label": sentiment_labels[0],
             "probability": round(prediction.max() * 100, 2)
         }
-        # return prediction
 
 
-class SentimentModel:
+class ModelWithVectorizer:
     def __init__(self, model_name):
         vec_file = os.path.join(os.path.dirname(__file__), 'models', f'vectorizer_{model_name}.pickle')
         self.vectorizer = pickle.load(open(vec_file, 'rb'))
