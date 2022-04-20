@@ -165,7 +165,7 @@ textarea {
 }
 
 body {
-  -ms-overflow-style: scrollbar;
+  /* -ms-overflow-style: scrollbar; */
 }
 
 @media screen and (max-width: 480px) {
@@ -203,7 +203,7 @@ body {
 }
 
 body {
-  display: -moz-flex;
+  /* display: -moz-flex;
   display: -webkit-flex;
   display: -ms-flex;
   display: flex;
@@ -214,7 +214,7 @@ body {
   -moz-justify-content: center;
   -webkit-justify-content: center;
   -ms-justify-content: center;
-  justify-content: center;
+  justify-content: center; */
   background-color: #000;
   padding: 6em 4em 4em 4em;
 }
@@ -561,7 +561,7 @@ code {
 }
 
 pre {
-  -webkit-overflow-scrolling: touch;
+  /* -webkit-overflow-scrolling: touch; */
   font-family: "Courier New", monospace;
   font-size: 0.9em;
   margin: 0 0 2em 0;
@@ -716,7 +716,7 @@ ul.icons li a {
 
 /* Form */
 form {
-  margin: 0 0 2em 0;
+  margin: 0 0 3em 0;
 }
 
 form .message {
@@ -1184,42 +1184,60 @@ button:disabled,
 }
 
 /* Result */
-#result h2 {
+#results {
+  max-height: 400px;
+  width: 75%;
+  overflow-y: scroll;
+}
+.result {
+  margin-bottom: 2.5em;
+  width: 100%;
+  float: left;
+}
+.result h3 {
   margin: 0;
 }
-#result #result-label {
+.result .result-text {
+  padding-right: 1em;
   font-size: 1.1em;
-  margin: 0.5em 0 1em;
-}
-#result .result-tile {
+  width: 60%;
   float: left;
-  margin-right: 4em;
+}
+.result .result-predictions {
+  width: 40%;
+  float: left;
+}
+
+@media screen and (max-width: 1024px) {
+  #results {
+    width: 100%;
+  }
 }
 
 /* Sentiment */
-#sentiment .sentiment-1,
-#sentiment .sentiment-4 {
+.sentiment .sentiment-1,
+.sentiment .sentiment-4 {
   font-weight: bold;
   color: #199e83
 }
-#sentiment .sentiment-0 {
+.sentiment .sentiment-0 {
   font-weight: bold;
   color: #ca5237
 }
-#sentiment #sentiment-probability {
+.sentiment #sentiment-probability {
   font-size: 0.8em
 }
 
 /* Cyberbullying */
-#cyberbullying .cyberbullying-age,
-#cyberbullying .cyberbullying-ethnicity,
-#cyberbullying .cyberbullying-gender,
-#cyberbullying .cyberbullying-other_cyberbullying,
-#cyberbullying .cyberbullying-religion {
+.cyberbullying .cyberbullying-age,
+.cyberbullying .cyberbullying-ethnicity,
+.cyberbullying .cyberbullying-gender,
+.cyberbullying .cyberbullying-other_cyberbullying,
+.cyberbullying .cyberbullying-religion {
   font-weight: bold;
   color: #ca5237
 }
-#cyberbullying .cyberbullying-not_cyberbullying {
+.cyberbullying .cyberbullying-not_cyberbullying {
   font-weight: bold;
   color: #199e83
 }
@@ -1231,12 +1249,13 @@ button:disabled,
   -ms-transition: opacity 0.5s ease-in-out;
   transition: opacity 0.5s ease-in-out;
   bottom: 4em;
-  left: 4em;
+  right: 4em;
   opacity: 0.5;
   position: absolute;
 }
 
 #footer .icons {
+  text-align: right;
   margin: 0 0 0.5em 0;
 }
 
@@ -1275,28 +1294,28 @@ button:disabled,
 @media screen and (max-width: 1680px) {
   #footer {
     bottom: 3.5em;
-    left: 3.5em;
+    right: 3.5em;
   }
 }
 
 @media screen and (max-width: 736px) {
   #footer {
     bottom: 2em;
-    left: 2em;
+    right: 2em;
   }
 }
 
 @media screen and (max-width: 360px) {
   #footer {
     bottom: 1.25em;
-    left: 1.25em;
+    right: 1.25em;
   }
 }
 
 @media screen and (max-height: 640px) {
   #footer {
     bottom: auto;
-    left: auto;
+    right: auto;
     margin: 4em 0 0 0;
     position: relative;
   }

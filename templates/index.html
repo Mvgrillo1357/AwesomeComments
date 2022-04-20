@@ -12,23 +12,32 @@
 
     <header id="header">
         <h1>AwesomeComments</h1>
-        <p>Enter your text and we will predict the sentiment and if cyberbullying is present</p>
+        <p>
+            Enter the URL of a Tweet to analyze the sentiment of the converation and detect if cyberbullying is
+            occurring
+        </p>
     </header>
 
     <form id="text-form" method="post" action="/result">
-        <input type="text" id="tweet_text" name="tweet_text" required autocomplete="off" placeholder="Enter your text">
+        <input type="text" id="tweet_url" name="tweet_url" required autocomplete="off" placeholder="Tweet URL">
         <input type="submit" value="Submit" />
     </form>
 
-    <div id="result">
-        {% block result %}
-        {% endblock %}
-    </div>
+    {% block result %}
+    {% endblock %}
 
     <footer id="footer">
         <ul class="icons">
-            <li><a href="https://github.com/Mvgrillo1357/AwesomeComments" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-            <li><a href="#" class="icon fa-envelope"><span class="label">Email</span></a></li>
+            <li>
+                <a href="https://github.com/Mvgrillo1357/AwesomeComments" class="icon brands fa-github">
+                    <span class="label">GitHub</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="icon fa-envelope">
+                    <span class="label">Email</span>
+                </a>
+            </li>
         </ul>
         <div id="footer-nittany">
             <a href="https://www.psu.edu/"><img src="static/images/psu.png" /></a>

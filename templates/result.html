@@ -3,24 +3,28 @@
 {% block result %}
 
 <section>
-    <div id="result-label">
-        Results for "<b>{{text}}</b>"
-    </div>
+    <div id="results">
+        {% for tweet in tweets %}
+        <div class="result">
+            <div class="result-text">
+                {{tweet.text}}
+            </div>
 
-    <div class="result-tile">
-        <h2>Sentiment</h2>
-        <div id="sentiment">
-            <span class="sentiment-{{sentiment['class']}}">{{sentiment["label"]}}</span>
-            <span id="sentiment-probability">&nbsp;({{sentiment["probability"]}}% probability)</span>
+            <div class="result-predictions">
+                <h3>Sentiment</h3>
+                <div class="sentiment">
+                    <span class="sentiment-{{tweet.sentiment['class']}}">{{tweet.sentiment["label"]}}</span>
+                    <span class="sentiment-probability">&nbsp;({{tweet.sentiment["probability"]}}% probability)</span>
+                </div>
+                <h3>Cyberbullying</h3>
+                <div class="cyberbullying">
+                    <span class="cyberbullying-{{tweet.cyberbullying['class']}}">{{tweet.cyberbullying["label"]}}</span>
+                    <span class="cyberbullying-probability">&nbsp;({{tweet.cyberbullying["probability"]}}%
+                        probability)</span>
+                </div>
+            </div>
         </div>
-    </div>
-
-    <div class="result-tile">
-        <h2>Cyberbullying</h2>
-        <div id="cyberbullying">
-            <span class="cyberbullying-{{cyberbullying['class']}}">{{cyberbullying["label"]}}</span>
-            <span id="cyberbullying-probability">&nbsp;({{cyberbullying["probability"]}}% probability)</span>
-        </div>
+        {% endfor %}
     </div>
 
 </section>

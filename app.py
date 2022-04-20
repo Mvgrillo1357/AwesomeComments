@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template
 from models.model_init import Model, sentiment_labels, cyberbullying_labels
 from models.ensemble import get_ensemble_prediction
+from services.twitter import get_tweet_conversation
 
 app = Flask(__name__)
 
@@ -25,7 +26,7 @@ def get_cyberbullying_prediction(text):
     prediction = get_ensemble_prediction([mvg5906, mvg5906_sgd], text)
     prediction["label"] = cyberbullying_labels[prediction["class"]]
     return prediction
-    
+
 
 @app.route("/", methods=["GET"])
 def index():
@@ -34,10 +35,12 @@ def index():
 
 @app.route("/result", methods=["POST"])
 def result():
-    text = request.form["tweet_text"]
-    sentiment = get_sentiment_prediction(text)
-    cyberbullying = get_cyberbullying_prediction(text)
-    return render_template("result.html", text=text, sentiment=sentiment, cyberbullying=cyberbullying)
+    tweet_url = request.form["tweet_url"]
+    tweet_conversation = get_tweet_conversation(tweet_url)
+    for tweet in tweet_conversation:
+        tweet["sentiment"] = get_sentiment_prediction(tweet["text"])
+        tweet["cyberbullying"] = get_cyberbullying_prediction(tweet["text"])
+    return render_template("result.html", tweets=tweet_conversation)
 
 
 app.run(debug=True)
