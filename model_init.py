@@ -42,22 +42,17 @@ class SequentialModel:
         }
 
 
-class ModelWithVectorizer:
+class SentimentModel:
     def __init__(self, model_name):
         vec_file = os.path.join(os.path.dirname(__file__), 'models', f'vectorizer_{model_name}.pickle')
         self.vectorizer = pickle.load(open(vec_file, 'rb'))
         model_file = os.path.join(os.path.dirname(__file__), 'models', f'sentiment_{model_name}.pickle')
         self.model = pickle.load(open(model_file, 'rb'))
 
-    def get_sentiment(self, text):
+    def get_probabilities(self, text):
         text_vectorized = self.vectorizer.transform([text])
-        prediction = self.model.predict(text_vectorized)[0]
         probabilities = self.model.predict_proba(text_vectorized)[0]
-        return {
-            "value": prediction,
-            "label": sentiment_labels[prediction],
-            "probability": round(probabilities.max() * 100, 2)
-        }
+        return probabilities
 
 
 class CyberBullyModel:
