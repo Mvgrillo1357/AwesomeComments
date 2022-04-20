@@ -61,12 +61,15 @@ class ModelWithVectorizer:
 
 
 class CyberBullyModel:
-    def __init__(self, model_name):
-        vec_file = os.path.join(os.path.dirname(__file__), 'models', f'cyberbullyvectorizer_{model_name}.pickle')
+    def __init__(self, model_name1, model_name2):
+        vec_file1 = os.path.join(os.path.dirname(__file__), 'models', f'cyberbullyvectorizer_{model_name1}.pickle')
         self.vectorizer = pickle.load(open(vec_file, 'rb'))
-        model_file = os.path.join(os.path.dirname(__file__), 'models', f'cyberbullysentiment_{model_name}.pickle')
+        model_file1 = os.path.join(os.path.dirname(__file__), 'models', f'cyberbullysentiment_{model_name1}.pickle')
         self.model = pickle.load(open(model_file, 'rb'))
-
+        vec_file2 = os.path.join(os.path.dirname(__file__), 'models', f'cyberbullyvectorizer_{model_name2}.pickle')
+        self.vectorizer = pickle.load(open(vec_file, 'rb'))
+        model_file2 = os.path.join(os.path.dirname(__file__), 'models', f'cyberbullysentiment_{model_name2}.pickle')
+        self.model = pickle.load(open(model_file, 'rb'))
     def get_ctype(self, text):
         text_vectorized = self.vectorizer.transform([text])
         prediction = self.model.predict(text_vectorized)[0]

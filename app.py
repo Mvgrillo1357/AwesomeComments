@@ -7,7 +7,7 @@ saa6124 = ModelWithVectorizer('saa6124')
 cpb5703 = ModelWithVectorizer('cpb5703')
 aav5195 = SequentialModel('aav5195')
 mvg5906 = CyberBullyModel('mvg5906')
-
+mvg5906_sgd = CyberBullyModel('sgdmvg5906')
 
 def get_sentiment(text):
     sentiment_saa6124 = saa6124.get_sentiment(text)
@@ -24,7 +24,10 @@ def get_sentiment(text):
 
 def get_cyberbullying(text):
     # TODO
-    cyberbullying = mvg5906.get_ctype(text)
+    #cyberbullying1 = mvg5906.get_ctype(text)
+    #yberbullying2 = mvg5906_sgd.get_ctype(text)
+    #ensemble_cyber = (cyberbullying1 + cyberbullying2)/2
+    cyberbullying = mvg5906_sgd.get_ctype(text)
     return cyberbullying
 
 
