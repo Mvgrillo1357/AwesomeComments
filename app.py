@@ -40,7 +40,7 @@ def result():
     for tweet in tweet_conversation:
         tweet["sentiment"] = get_sentiment_prediction(tweet["text"])
         tweet["cyberbullying"] = get_cyberbullying_prediction(tweet["text"])
-    return render_template("result.html", tweets=tweet_conversation)
+    return render_template("result.html", tweet_url=tweet_url, tweets=tweet_conversation)
 
 
 app.run(debug=True)

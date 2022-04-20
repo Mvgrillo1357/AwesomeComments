@@ -3,18 +3,22 @@
 {% block result %}
 
 <section>
+    <div id="results-label">
+        Results for <a href="{{tweet_url}}" target="_blank">{{tweet_url}}</a>
+    </div>
     <div id="results">
+        
         {% for tweet in tweets %}
         <div class="result">
             <div class="result-text">
                 {{tweet.text}}
             </div>
-
             <div class="result-predictions">
                 <h3>Sentiment</h3>
                 <div class="sentiment">
                     <span class="sentiment-{{tweet.sentiment['class']}}">{{tweet.sentiment["label"]}}</span>
-                    <span class="sentiment-probability">&nbsp;({{tweet.sentiment["probability"]}}% probability)</span>
+                    <span class="sentiment-probability">&nbsp;({{tweet.sentiment["probability"]}}%
+                        probability)</span>
                 </div>
                 <h3>Cyberbullying</h3>
                 <div class="cyberbullying">
@@ -25,6 +29,7 @@
             </div>
         </div>
         {% endfor %}
+        
     </div>
 
 </section>

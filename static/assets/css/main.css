@@ -716,7 +716,7 @@ ul.icons li a {
 
 /* Form */
 form {
-  margin: 0 0 3em 0;
+  margin: 0 0 2em 0;
 }
 
 form .message {
@@ -1184,6 +1184,9 @@ button:disabled,
 }
 
 /* Result */
+#results-label {
+  margin: 1em 0 1.5em;
+}
 #results {
   max-height: 400px;
   width: 75%;
