@@ -17,11 +17,7 @@ def get_tweet_conversation(tweet_url):
     conversation_response = client.search_recent_tweets(
         query=f"conversation_id:{conversation_id} lang:en", 
         sort_order="relevancy",
-        max_results=14,
-        expansions=["author_id"], 
-        user_fields=["name"])
-
-    print(conversation_response)
+        max_results=14)
 
     for tweet in conversation_response.data:
         conversation.append({
