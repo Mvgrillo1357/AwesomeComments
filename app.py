@@ -9,8 +9,8 @@ saa6124 = Model('sentiment_saa6124.pickle',
 cpb5703 = Model('sentiment_cpb5703.pickle',
                 'vectorizer_cpb5703.pickle')
 
-aav5195 = Model('sentiment_aav5195.pickle',
-                'vectorizer_aav5195.pickle')
+# aav5195 = Model('sentiment_aav5195.pickle',
+#                 'vectorizer_aav5195.pickle')
 
 #mvg5906 = Model('cyberbullysentiment_mvg5906.pickle','cyberbullyvectorizer_mvg5906.pickle')
 
@@ -24,7 +24,8 @@ mvg5906_mlpclass = Model('cyberbullysentiment_mlpclassmvg5906.pickle', 'cyberbul
 
 
 def get_sentiment_prediction(text):
-    prediction = get_ensemble_prediction([saa6124, cpb5703, aav5195], text)
+    prediction = get_ensemble_prediction([saa6124, cpb5703],#, aav5195],
+    text)
     prediction["label"] = sentiment_labels[prediction["class"]]
     return prediction
 
