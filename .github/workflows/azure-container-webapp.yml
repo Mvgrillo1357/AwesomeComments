@@ -14,9 +14,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: git checkout
+        uses: actions/checkout@v3
         with:
             lfs: true
+      
+      - name: git pull LFS objects
+        run: git lfs pull
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
