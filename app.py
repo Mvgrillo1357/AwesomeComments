@@ -20,8 +20,7 @@ mvg5906_mlpclass = Model('cyberbullysentiment_mlpclassmvg5906.pickle', 'cyberbul
 
 
 def get_sentiment_prediction(text):
-    prediction = get_ensemble_prediction([saa6124, cpb5703, aav5195],
-    text)
+    prediction = get_ensemble_prediction([saa6124, cpb5703, aav5195], text)
     prediction["label"] = sentiment_labels[prediction["class"]]
     return prediction
 
