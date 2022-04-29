@@ -6,7 +6,7 @@ import pickle
 sentiment_labels = {
     0: "Negative",
     4: "Positive",
-    # Some models are transforming 4 to 1
+    # Some models are transforming the class 4 to 1
     1: "Positive"
 }
 
@@ -21,12 +21,12 @@ cyberbullying_labels = {
 }
 
 
-# Model class for common interface on serialized models and input vectorizers
+# Model class for common interface on serialized models and vectorizers
 class Model:
     # Initializes the Model instance
-    # files are assumed to be in the same directory as this file (/models)
     def __init__(self, model_file: str, vectorizer_file: str):
         # Build file paths using current system directory
+        # Model and vectorizer are assumed to be in the same directory as this file (/models)
         model_path = os.path.join(os.path.dirname(__file__), model_file)
         vectorizer_path = os.path.join(os.path.dirname(__file__), vectorizer_file)
         # Unpickle the files in read mode and set as instance variables
