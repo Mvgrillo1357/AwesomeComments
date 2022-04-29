@@ -1223,6 +1223,9 @@ button:disabled,
   font-weight: bold;
   color: #199e83
 }
+#cyberbullying #cyberbullying-probability {
+  font-size: 0.8em
+}
 
 /* Footer */
 #footer {
